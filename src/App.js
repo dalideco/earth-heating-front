@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Form from './pages/Form';
+import { Route, Switch } from 'react-router';
+import HomePage from './pages/HomePage';
+
+const routes = [
+  { path:"/home", Component:HomePage, name:"home" },
+  { path:"/", Component:Form, name:'form'}
+]
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Switch>
+      {
+        routes.map(({path,Component})=>(
+          <Route path={path}>
+            <Component/>
+          </Route>
+        ))
+      }
+      </Switch>
     </div>
   );
 }
